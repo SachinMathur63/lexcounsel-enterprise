@@ -91,9 +91,6 @@ function Clients() {
 
 function ClientModal({ open, onClose, initial, onSave }: { open: boolean; onClose: () => void; initial: Client | null; onSave: (c: Client) => void }) {
   const [form, setForm] = useState<Client>(initial || { id: uid(), name: "", email: "", phone: "", company: "", createdAt: new Date().toISOString().slice(0, 10) });
-  // reset on open
-  if (open && initial && form.id !== initial.id) setForm(initial);
-  if (open && !initial && form.id === (initial as any)?.id) setForm({ id: uid(), name: "", email: "", phone: "", company: "", createdAt: new Date().toISOString().slice(0, 10) });
 
   return (
     <Modal open={open} onClose={onClose} title={initial ? "Edit client" : "Add new client"}>

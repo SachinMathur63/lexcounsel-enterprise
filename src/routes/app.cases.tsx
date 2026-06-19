@@ -95,7 +95,7 @@ function Cases() {
         </table>
       </div>
 
-      <CaseModal open={open} onClose={() => { setOpen(false); setEditing(null); }} initial={editing} onSave={save} clients={clients} />
+      <CaseModal key={editing?.id || "new"} open={open} onClose={() => { setOpen(false); setEditing(null); }} initial={editing} onSave={save} clients={clients} />
     </div>
   );
 }
