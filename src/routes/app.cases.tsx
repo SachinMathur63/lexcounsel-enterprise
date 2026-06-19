@@ -118,8 +118,6 @@ function PriorityPill({ p }: { p: string }) {
 function CaseModal({ open, onClose, initial, onSave, clients }: { open: boolean; onClose: () => void; initial: Case | null; onSave: (c: Case) => void; clients: { id: string; name: string }[] }) {
   const empty = (): Case => ({ id: uid(), title: "", number: "", clientId: clients[0]?.id || "", opposingParty: "", priority: "Medium", status: "Open", court: "", createdAt: new Date().toISOString().slice(0, 10) });
   const [form, setForm] = useState<Case>(initial || empty());
-  if (open && initial && form.id !== initial.id) setForm(initial);
-  if (open && !initial && form.title !== "" && !initial) {} // no-op guard
   return (
     <Modal open={open} onClose={onClose} title={initial ? "Edit case" : "New case"}>
       <form onSubmit={(e) => { e.preventDefault(); if (!form.title || !form.number) return; onSave(form); }} className="space-y-4">
