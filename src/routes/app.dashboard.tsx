@@ -4,7 +4,7 @@ import { Briefcase, Calendar, CheckSquare, TrendingUp, ArrowUpRight, Clock } fro
 import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis, CartesianGrid, BarChart, Bar } from "recharts";
 
 export const Route = createFileRoute("/app/dashboard")({
-  head: () => ({ meta: [{ title: "Dashboard — Lex Counsel" }] }),
+  head: () => ({ meta: [{ title: "Dashboard — Vajra Legal Chambers" }] }),
   component: Dashboard,
 });
 
@@ -57,6 +57,9 @@ function Dashboard() {
           </div>
         ))}
       </div>
+
+      <FinancialLedger />
+
 
       <div className="grid gap-6 lg:grid-cols-3">
         <div className="rounded-2xl border border-border bg-card p-6 lg:col-span-2">
