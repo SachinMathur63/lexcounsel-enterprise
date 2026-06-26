@@ -42,7 +42,7 @@ function AdminLogin() {
         <div className="absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/20 blur-3xl" />
       </div>
       <div className="relative w-full max-w-md">
-        <div className="mb-6 flex justify-center">
+        
         <div className="mb-6 flex flex-col items-center">
           <div className="grid h-20 w-20 place-items-center rounded-2xl bg-[#121212] ring-1 ring-gold/40 shadow-glow">
             <RoyalLogo size={56} />
