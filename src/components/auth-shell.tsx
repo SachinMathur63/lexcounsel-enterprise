@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import { Scale } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { RoyalLogo } from "@/components/royal-logo";
 
 export function AuthShell({
   title, subtitle, children, footer,
@@ -9,30 +9,29 @@ export function AuthShell({
   return (
     <div className="grid min-h-screen lg:grid-cols-2">
       <div className="relative hidden flex-col justify-between gradient-navy p-12 text-white lg:flex">
-        <Link to="/" className="flex items-center gap-2.5">
-          <div className="grid h-10 w-10 place-items-center rounded-lg gradient-gold shadow-glow">
-            <Scale className="h-5 w-5 text-gold-foreground" />
+        <Link to="/" className="flex items-center gap-3">
+          <RoyalLogo size={40} />
+          <div className="leading-tight">
+            <div className="font-display text-xl font-bold">Vajra Legal Chambers</div>
+            <div className="text-[10px] uppercase tracking-[0.3em] text-gold">Royal Counsel Suite</div>
           </div>
-          <span className="font-display text-xl font-bold">Lex Counsel</span>
         </Link>
         <div className="relative">
           <div className="pointer-events-none absolute -inset-20 bg-gradient-to-br from-gold/20 to-transparent blur-3xl" />
           <blockquote className="relative">
             <p className="font-display text-3xl leading-snug">
-              "Lex Counsel transformed how our firm operates. It's like having an extra partner — one that never sleeps."
+              "Vajra is the apex operating system of Indian legal practice — every CNR, every cause list, every order, one console."
             </p>
-            <footer className="mt-4 text-sm text-white/70">— Elena Sterling, Managing Partner</footer>
+            <footer className="mt-4 text-sm text-white/70">— Senior Advocate, Supreme Court of India</footer>
           </blockquote>
         </div>
-        <div className="text-xs text-white/50">© {new Date().getFullYear()} Lex Counsel. Bank-grade security.</div>
+        <div className="text-xs text-white/50">© {new Date().getFullYear()} Vajra Legal Chambers. Bank-grade security.</div>
       </div>
       <div className="flex items-center justify-center bg-background px-6 py-12">
         <div className="w-full max-w-md">
           <Link to="/" className="mb-8 flex items-center gap-2 lg:hidden">
-            <div className="grid h-9 w-9 place-items-center rounded-lg gradient-gold">
-              <Scale className="h-4 w-4 text-gold-foreground" />
-            </div>
-            <span className="font-display text-lg font-bold">Lex Counsel</span>
+            <RoyalLogo size={32} />
+            <span className="font-display text-lg font-bold">Vajra Legal Chambers</span>
           </Link>
           <h1 className="font-display text-3xl font-bold">{title}</h1>
           <p className="mt-2 text-sm text-muted-foreground">{subtitle}</p>
