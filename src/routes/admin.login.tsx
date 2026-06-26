@@ -5,11 +5,12 @@ import { Button } from "@/components/ui/button";
 import { store } from "@/lib/store";
 import { toast } from "sonner";
 
-const ADMIN_USERNAME = "lexcounsel";
-const ADMIN_PASSWORD = "nandini@123";
+const ADMIN_USERNAME = "vajra_legal_chambers";
+const ADMIN_PASSWORD = "VajraLegalChambers@2026";
+const FIRM_NAME = "Vajra Legal Chambers";
 
 export const Route = createFileRoute("/admin/login")({
-  head: () => ({ meta: [{ title: "Admin Login — Lex Counsel" }] }),
+  head: () => ({ meta: [{ title: `Admin Login — ${FIRM_NAME}` }] }),
   component: AdminLogin,
 });
 
