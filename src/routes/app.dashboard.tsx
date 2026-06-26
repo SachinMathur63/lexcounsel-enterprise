@@ -167,11 +167,10 @@ function StatusPill({ status }: { status: string }) {
 }
 
 function FinancialLedger() {
-  const invoices = (typeof window !== "undefined" ? JSON.parse(localStorage.getItem("lex-store") || "{}").invoices : null) ?? [];
-  // Compute from store via direct hook would be cleaner; but using props from parent is heavier. Use a lightweight derived block.
-  const received = invoices.filter((i: any) => i.status === "Paid").reduce((a: number, i: any) => a + (i.amount || 0), 0);
-  const pending = invoices.filter((i: any) => i.status !== "Paid").reduce((a: number, i: any) => a + (i.amount || 0), 0);
-  const retainer = 850000; // demo retainer pool
+  const invoices = useStore((s) => s.invoices);
+  const received = invoices.filter((i) => i.status === "Paid").reduce((a, i) => a + (i.amount || 0), 0);
+  const pending = invoices.filter((i) => i.status !== "Paid").reduce((a, i) => a + (i.amount || 0), 0);
+  const retainer = 850000;
   const escrow = 4218500;
   const items = [
     { label: "Fees Received", value: received, icon: Banknote, tone: "text-success", hint: "All paid invoices" },
