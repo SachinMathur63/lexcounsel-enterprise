@@ -2,10 +2,12 @@ import { Outlet, Link, useRouterState, useNavigate, redirect, createFileRoute } 
 import { useState } from "react";
 import {
   LayoutDashboard, Users, Briefcase, Calendar, FileText, CheckSquare,
-  Receipt, Bell, Search, Sun, Moon, LogOut, Scale, ChevronDown, Settings,
+  Receipt, Bell, Search, Sun, Moon, LogOut, ChevronDown, Settings, Sparkles,
 } from "lucide-react";
 import { store, useStore } from "@/lib/store";
 import { Button } from "@/components/ui/button";
+import { RoyalLogo } from "@/components/royal-logo";
+import { AICopilot } from "@/components/ai-copilot";
 
 export const Route = createFileRoute("/app")({
   beforeLoad: () => {
@@ -23,6 +25,7 @@ const navItems = [
   { to: "/app/documents", label: "Documents", icon: FileText },
   { to: "/app/tasks", label: "Tasks", icon: CheckSquare },
   { to: "/app/billing", label: "Billing", icon: Receipt },
+  { to: "/app/features", label: "Capabilities", icon: Sparkles },
 ] as const;
 
 function AppLayout() {
@@ -33,10 +36,11 @@ function AppLayout() {
       {/* Sidebar */}
       <aside className={`fixed inset-y-0 left-0 z-40 w-64 bg-sidebar text-sidebar-foreground transition-transform lg:static lg:translate-x-0 ${mobileOpen ? "translate-x-0" : "-translate-x-full"}`}>
         <div className="flex h-16 items-center gap-2.5 border-b border-sidebar-border px-6">
-          <div className="grid h-9 w-9 place-items-center rounded-lg gradient-gold shadow-glow">
-            <Scale className="h-5 w-5 text-gold-foreground" />
+          <RoyalLogo size={32} />
+          <div className="leading-tight">
+            <div className="font-display text-base font-bold">Vajra Legal</div>
+            <div className="text-[10px] uppercase tracking-widest text-gold">Chambers</div>
           </div>
-          <span className="font-display text-lg font-bold">Lex Counsel</span>
         </div>
         <nav className="p-3">
           {navItems.map((item) => {
@@ -71,6 +75,7 @@ function AppLayout() {
       </div>
 
       {mobileOpen && <div className="fixed inset-0 z-30 bg-black/50 lg:hidden" onClick={() => setMobileOpen(false)} />}
+      <AICopilot />
     </div>
   );
 }

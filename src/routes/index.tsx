@@ -4,12 +4,13 @@ import {
   Scale, Shield, Calendar, FileText, Users, Briefcase, CheckCircle2,
   Sparkles, ArrowRight, Star, Gavel, BarChart3, Lock,
 } from "lucide-react";
+import { RoyalLogo } from "@/components/royal-logo";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Lex Counsel — The Premium Platform for Modern Law Firms" },
-      { name: "description", content: "Manage cases, clients, hearings, documents, and billing — all from one elegant, secure workspace built for legal professionals." },
+      { title: "Vajra Legal Chambers — Royal Operating System for Indian Law Firms" },
+      { name: "description", content: "Vajra Legal Chambers — 40 super-advanced modules for elite Indian law firms: CNR tracking, cause lists, AI drafting, GST billing, escrow, vernacular OCR and more." },
     ],
   }),
   component: Landing,
@@ -35,10 +36,11 @@ function Header() {
     <header className="sticky top-0 z-50 glass border-b border-border/50">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <Link to="/" className="flex items-center gap-2.5">
-          <div className="grid h-9 w-9 place-items-center rounded-lg gradient-gold shadow-glow">
-            <Scale className="h-5 w-5 text-gold-foreground" />
+          <RoyalLogo size={36} />
+          <div className="leading-tight">
+            <div className="font-display text-base font-bold tracking-tight">Vajra Legal Chambers</div>
+            <div className="text-[9px] uppercase tracking-[0.25em] text-gold">Royal Counsel Suite</div>
           </div>
-          <span className="font-display text-xl font-bold tracking-tight">Lex Counsel</span>
         </Link>
         <nav className="hidden items-center gap-8 md:flex">
           <a href="#features" className="text-sm text-muted-foreground hover:text-foreground">Features</a>
