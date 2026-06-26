@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useStore } from "@/lib/store";
-import { Briefcase, Calendar, CheckSquare, TrendingUp, ArrowUpRight, Clock } from "lucide-react";
+import { Briefcase, Calendar, CheckSquare, TrendingUp, ArrowUpRight, Clock, Wallet, Receipt, PiggyBank, Banknote } from "lucide-react";
 import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis, CartesianGrid, BarChart, Bar } from "recharts";
 
 export const Route = createFileRoute("/app/dashboard")({
@@ -164,4 +164,65 @@ function StatusPill({ status }: { status: string }) {
     "Closed": "bg-muted text-muted-foreground",
   };
   return <span className={`rounded-full px-2.5 py-1 text-xs font-medium ${map[status] || "bg-muted"}`}>{status}</span>;
+}
+
+function FinancialLedger() {
+  const invoices = (typeof window !== "undefined" ? JSON.parse(localStorage.getItem("lex-store") || "{}").invoices : null) ?? [];
+  // Compute from store via direct hook would be cleaner; but using props from parent is heavier. Use a lightweight derived block.
+  const received = invoices.filter((i: any) => i.status === "Paid").reduce((a: number, i: any) => a + (i.amount || 0), 0);
+  const pending = invoices.filter((i: any) => i.status !== "Paid").reduce((a: number, i: any) => a + (i.amount || 0), 0);
+  const retainer = 850000; // demo retainer pool
+  const escrow = 4218500;
+  const items = [
+    { label: "Fees Received", value: received, icon: Banknote, tone: "text-success", hint: "All paid invoices" },
+    { label: "Fees Pending", value: pending, icon: Receipt, tone: "text-warning", hint: "Outstanding & overdue" },
+    { label: "Retainer Balance", value: retainer, icon: Wallet, tone: "text-gold", hint: "Across active matters" },
+    { label: "Escrow / Trust", value: escrow, icon: PiggyBank, tone: "text-info", hint: "Bar-Council compliant" },
+  ];
+  const splits = [
+    { matter: "Acme v. Globex IP", lead: "60%", junior: "25%", firm: "15%" },
+    { matter: "Northwind Merger", lead: "50%", junior: "30%", firm: "20%" },
+    { matter: "Whitfield Estate", lead: "70%", junior: "15%", firm: "15%" },
+  ];
+  const fmt = (n: number) => "₹" + n.toLocaleString("en-IN");
+  return (
+    <div className="rounded-2xl border border-gold/30 bg-gradient-to-br from-card to-card/60 p-6">
+      <div className="flex items-center justify-between">
+        <div>
+          <div className="text-[10px] font-semibold uppercase tracking-[0.25em] text-gold">Financial Core</div>
+          <h2 className="font-display text-xl font-bold">Client Billing, Escrow & Fee Ledger</h2>
+        </div>
+        <span className="rounded-full border border-gold/30 bg-gold/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-gold">Live</span>
+      </div>
+      <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+        {items.map((it) => (
+          <div key={it.label} className="rounded-xl border border-border bg-background/40 p-4">
+            <div className="flex items-center gap-2"><it.icon className={`h-4 w-4 ${it.tone}`} /><span className="text-xs text-muted-foreground">{it.label}</span></div>
+            <div className="mt-2 font-display text-2xl font-bold">{fmt(it.value)}</div>
+            <div className="text-[10px] uppercase tracking-wider text-muted-foreground">{it.hint}</div>
+          </div>
+        ))}
+      </div>
+      <div className="mt-5">
+        <div className="mb-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground">Split-billing log</div>
+        <div className="overflow-hidden rounded-xl border border-border">
+          <table className="w-full text-sm">
+            <thead className="bg-muted/40 text-[10px] uppercase tracking-wider text-muted-foreground">
+              <tr><th className="px-4 py-2 text-left">Matter</th><th className="px-4 py-2 text-left">Lead</th><th className="px-4 py-2 text-left">Junior</th><th className="px-4 py-2 text-left">Firm</th></tr>
+            </thead>
+            <tbody>
+              {splits.map((s) => (
+                <tr key={s.matter} className="border-t border-border">
+                  <td className="px-4 py-2.5 font-medium">{s.matter}</td>
+                  <td className="px-4 py-2.5 text-gold">{s.lead}</td>
+                  <td className="px-4 py-2.5">{s.junior}</td>
+                  <td className="px-4 py-2.5 text-muted-foreground">{s.firm}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
 }
