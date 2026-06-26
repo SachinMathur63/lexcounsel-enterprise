@@ -2,10 +2,12 @@ import { Outlet, Link, useRouterState, useNavigate, redirect, createFileRoute } 
 import { useState } from "react";
 import {
   LayoutDashboard, Users, Briefcase, Calendar, FileText, CheckSquare,
-  Receipt, Bell, Search, Sun, Moon, LogOut, Scale, ChevronDown, Settings,
+  Receipt, Bell, Search, Sun, Moon, LogOut, ChevronDown, Settings, Sparkles,
 } from "lucide-react";
 import { store, useStore } from "@/lib/store";
 import { Button } from "@/components/ui/button";
+import { RoyalLogo } from "@/components/royal-logo";
+import { AICopilot } from "@/components/ai-copilot";
 
 export const Route = createFileRoute("/app")({
   beforeLoad: () => {

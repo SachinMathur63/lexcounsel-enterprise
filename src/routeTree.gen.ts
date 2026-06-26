@@ -15,12 +15,14 @@ import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AuthSignupRouteImport } from './routes/auth.signup'
 import { Route as AuthLoginRouteImport } from './routes/auth.login'
 import { Route as AppTasksRouteImport } from './routes/app.tasks'
+import { Route as AppFeaturesRouteImport } from './routes/app.features'
 import { Route as AppDocumentsRouteImport } from './routes/app.documents'
 import { Route as AppDashboardRouteImport } from './routes/app.dashboard'
 import { Route as AppClientsRouteImport } from './routes/app.clients'
 import { Route as AppCasesRouteImport } from './routes/app.cases'
 import { Route as AppCalendarRouteImport } from './routes/app.calendar'
 import { Route as AppBillingRouteImport } from './routes/app.billing'
+import { Route as ApiAiCopilotRouteImport } from './routes/api/ai-copilot'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
 import { Route as AdminDashboardRouteImport } from './routes/admin.dashboard'
 
@@ -54,6 +56,11 @@ const AppTasksRoute = AppTasksRouteImport.update({
   path: '/tasks',
   getParentRoute: () => AppRoute,
 } as any)
+const AppFeaturesRoute = AppFeaturesRouteImport.update({
+  id: '/features',
+  path: '/features',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppDocumentsRoute = AppDocumentsRouteImport.update({
   id: '/documents',
   path: '/documents',
@@ -84,6 +91,11 @@ const AppBillingRoute = AppBillingRouteImport.update({
   path: '/billing',
   getParentRoute: () => AppRoute,
 } as any)
+const ApiAiCopilotRoute = ApiAiCopilotRouteImport.update({
+  id: '/api/ai-copilot',
+  path: '/api/ai-copilot',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminLoginRoute = AdminLoginRouteImport.update({
   id: '/admin/login',
   path: '/admin/login',
@@ -100,12 +112,14 @@ export interface FileRoutesByFullPath {
   '/app': typeof AppRouteWithChildren
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/login': typeof AdminLoginRoute
+  '/api/ai-copilot': typeof ApiAiCopilotRoute
   '/app/billing': typeof AppBillingRoute
   '/app/calendar': typeof AppCalendarRoute
   '/app/cases': typeof AppCasesRoute
   '/app/clients': typeof AppClientsRoute
   '/app/dashboard': typeof AppDashboardRoute
   '/app/documents': typeof AppDocumentsRoute
+  '/app/features': typeof AppFeaturesRoute
   '/app/tasks': typeof AppTasksRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/signup': typeof AuthSignupRoute
@@ -115,12 +129,14 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/login': typeof AdminLoginRoute
+  '/api/ai-copilot': typeof ApiAiCopilotRoute
   '/app/billing': typeof AppBillingRoute
   '/app/calendar': typeof AppCalendarRoute
   '/app/cases': typeof AppCasesRoute
   '/app/clients': typeof AppClientsRoute
   '/app/dashboard': typeof AppDashboardRoute
   '/app/documents': typeof AppDocumentsRoute
+  '/app/features': typeof AppFeaturesRoute
   '/app/tasks': typeof AppTasksRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/signup': typeof AuthSignupRoute
@@ -132,12 +148,14 @@ export interface FileRoutesById {
   '/app': typeof AppRouteWithChildren
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/login': typeof AdminLoginRoute
+  '/api/ai-copilot': typeof ApiAiCopilotRoute
   '/app/billing': typeof AppBillingRoute
   '/app/calendar': typeof AppCalendarRoute
   '/app/cases': typeof AppCasesRoute
   '/app/clients': typeof AppClientsRoute
   '/app/dashboard': typeof AppDashboardRoute
   '/app/documents': typeof AppDocumentsRoute
+  '/app/features': typeof AppFeaturesRoute
   '/app/tasks': typeof AppTasksRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/signup': typeof AuthSignupRoute
@@ -150,12 +168,14 @@ export interface FileRouteTypes {
     | '/app'
     | '/admin/dashboard'
     | '/admin/login'
+    | '/api/ai-copilot'
     | '/app/billing'
     | '/app/calendar'
     | '/app/cases'
     | '/app/clients'
     | '/app/dashboard'
     | '/app/documents'
+    | '/app/features'
     | '/app/tasks'
     | '/auth/login'
     | '/auth/signup'
@@ -165,12 +185,14 @@ export interface FileRouteTypes {
     | '/'
     | '/admin/dashboard'
     | '/admin/login'
+    | '/api/ai-copilot'
     | '/app/billing'
     | '/app/calendar'
     | '/app/cases'
     | '/app/clients'
     | '/app/dashboard'
     | '/app/documents'
+    | '/app/features'
     | '/app/tasks'
     | '/auth/login'
     | '/auth/signup'
@@ -181,12 +203,14 @@ export interface FileRouteTypes {
     | '/app'
     | '/admin/dashboard'
     | '/admin/login'
+    | '/api/ai-copilot'
     | '/app/billing'
     | '/app/calendar'
     | '/app/cases'
     | '/app/clients'
     | '/app/dashboard'
     | '/app/documents'
+    | '/app/features'
     | '/app/tasks'
     | '/auth/login'
     | '/auth/signup'
@@ -198,6 +222,7 @@ export interface RootRouteChildren {
   AppRoute: typeof AppRouteWithChildren
   AdminDashboardRoute: typeof AdminDashboardRoute
   AdminLoginRoute: typeof AdminLoginRoute
+  ApiAiCopilotRoute: typeof ApiAiCopilotRoute
   AuthLoginRoute: typeof AuthLoginRoute
   AuthSignupRoute: typeof AuthSignupRoute
 }
@@ -246,6 +271,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppTasksRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/features': {
+      id: '/app/features'
+      path: '/features'
+      fullPath: '/app/features'
+      preLoaderRoute: typeof AppFeaturesRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/documents': {
       id: '/app/documents'
       path: '/documents'
@@ -288,6 +320,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppBillingRouteImport
       parentRoute: typeof AppRoute
     }
+    '/api/ai-copilot': {
+      id: '/api/ai-copilot'
+      path: '/api/ai-copilot'
+      fullPath: '/api/ai-copilot'
+      preLoaderRoute: typeof ApiAiCopilotRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/login': {
       id: '/admin/login'
       path: '/admin/login'
@@ -312,6 +351,7 @@ interface AppRouteChildren {
   AppClientsRoute: typeof AppClientsRoute
   AppDashboardRoute: typeof AppDashboardRoute
   AppDocumentsRoute: typeof AppDocumentsRoute
+  AppFeaturesRoute: typeof AppFeaturesRoute
   AppTasksRoute: typeof AppTasksRoute
   AppIndexRoute: typeof AppIndexRoute
 }
@@ -323,6 +363,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppClientsRoute: AppClientsRoute,
   AppDashboardRoute: AppDashboardRoute,
   AppDocumentsRoute: AppDocumentsRoute,
+  AppFeaturesRoute: AppFeaturesRoute,
   AppTasksRoute: AppTasksRoute,
   AppIndexRoute: AppIndexRoute,
 }
@@ -334,19 +375,10 @@ const rootRouteChildren: RootRouteChildren = {
   AppRoute: AppRouteWithChildren,
   AdminDashboardRoute: AdminDashboardRoute,
   AdminLoginRoute: AdminLoginRoute,
+  ApiAiCopilotRoute: ApiAiCopilotRoute,
   AuthLoginRoute: AuthLoginRoute,
   AuthSignupRoute: AuthSignupRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
