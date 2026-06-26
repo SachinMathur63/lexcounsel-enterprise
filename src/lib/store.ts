@@ -27,6 +27,7 @@ export type Notification = { id: string; title: string; message: string; time: s
 export type State = {
   user: User | null;
   isAdmin: boolean;
+  firmName: string;
   theme: "light" | "dark";
   clients: Client[];
   cases: Case[];
@@ -40,6 +41,7 @@ export type State = {
 const seed = (): State => ({
   user: null,
   isAdmin: false,
+  firmName: "Vajra Legal Chambers",
   theme: "dark",
   clients: [
     { id: "c1", name: "Acme Corporation", email: "legal@acme.com", phone: "+1 555 0101", company: "Acme Corp", createdAt: "2025-01-10" },
