@@ -38,8 +38,8 @@ function AppLayout() {
         <div className="flex h-16 items-center gap-2.5 border-b border-sidebar-border px-6">
           <RoyalLogo size={32} />
           <div className="leading-tight">
-            <div className="font-display text-base font-bold">Vajra Legal</div>
-            <div className="text-[10px] uppercase tracking-widest text-gold">Chambers</div>
+            <div className="font-display text-base font-bold">law.aflix</div>
+            <div className="text-[10px] uppercase tracking-widest text-gold">.co.in · LPMS</div>
           </div>
         </div>
         <nav className="p-3">

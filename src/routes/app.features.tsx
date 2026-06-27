@@ -5,11 +5,11 @@ import {
   Languages, Timer, FileSignature, Lock, Network, UserSearch, BarChart3, ShieldAlert, GitBranch,
   Stamp, BookOpen, WifiOff, FileUp, Bot, EyeOff, Swords, Banknote, Globe2, Briefcase, Crown,
   Newspaper, Skull, Building2, Plane, Boxes, Mic, ScrollText, Bell, Video, FileBadge,
-  Search, TrendingUp, FileCheck, MapPin, MonitorPlay, FolderLock, Hourglass, HeartHandshake, Landmark, Radar,
+  Search, TrendingUp, FileCheck, MapPin, MonitorPlay, FolderLock, Hourglass, HeartHandshake, Landmark, Radar, UserCog,
 } from "lucide-react";
 
 export const Route = createFileRoute("/app/features")({
-  head: () => ({ meta: [{ title: "Capabilities — Vajra Legal Chambers" }] }),
+  head: () => ({ meta: [{ title: "Capabilities — law.aflix.co.in" }] }),
   component: FeaturesPage,
 });
 
@@ -66,6 +66,7 @@ const FEATURES: Feature[] = [
   { n: 48, title: "Pro-Bono & CSR Tracker", desc: "Logs free legal-aid hours for compliance.", icon: HeartHandshake, demo: () => "FY26 pro-bono: 184 hrs across 12 matters · meets BCI 50-hr norm ✓." },
   { n: 49, title: "IBC Resolution Timeline Matrix", desc: "NCLT corporate insolvency stage tracker.", icon: Landmark, demo: () => "CIRP Day 142/180 · CoC vote pending · RA submissions: 3 · liquidation risk: medium." },
   { n: 50, title: "IPR Infringement Radar", desc: "Scans patent, trademark, copyright DBs.", icon: Radar, demo: () => "3 trademark hits (Class 9) · 1 copyright takedown ready · 0 patent conflicts." },
+  { n: 51, title: "Assign Client to Assistant", desc: "Lawyer assigns clients to assistants; lawyer remains primary owner.", icon: UserCog, demo: () => "Client 'Acme Corp' assigned to Assistant Priya R. · Lawyer Adv. Mehra retained as primary · 3 tasks delegated." },
 ];
 
 function FeaturesPage() {
@@ -76,7 +77,7 @@ function FeaturesPage() {
     <div className="space-y-6">
       <div>
         <h1 className="font-display text-3xl font-bold">Capabilities</h1>
-        <p className="text-muted-foreground">All 50 super-advanced modules of Vajra Legal Chambers. Click any tile to run it.</p>
+        <p className="text-muted-foreground">All 51 super-advanced modules of law.aflix.co.in. Click any tile to run it.</p>
       </div>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {FEATURES.map((f) => (

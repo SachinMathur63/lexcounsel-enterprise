@@ -9,8 +9,8 @@ import { RoyalLogo } from "@/components/royal-logo";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Vajra Legal Chambers — Royal Operating System for Indian Law Firms" },
-      { name: "description", content: "Vajra Legal Chambers — 40 super-advanced modules for elite Indian law firms: CNR tracking, cause lists, AI drafting, GST billing, escrow, vernacular OCR and more." },
+      { title: "law.aflix.co.in — AI-Powered Legal Practice Management" },
+      { name: "description", content: "AI-powered LPMS for Indian law firms — CNR tracking, AI drafting, GST billing, e-signature, escrow & vernacular OCR. Plans from ₹14,999/yr." },
     ],
   }),
   component: Landing,
@@ -38,8 +38,8 @@ function Header() {
         <Link to="/" className="flex items-center gap-2.5">
           <RoyalLogo size={36} />
           <div className="leading-tight">
-            <div className="font-display text-base font-bold tracking-tight">Vajra Legal Chambers</div>
-            <div className="text-[9px] uppercase tracking-[0.25em] text-gold">Royal Counsel Suite</div>
+            <div className="font-display text-base font-bold tracking-tight">law.aflix.co.in</div>
+            <div className="text-[9px] uppercase tracking-[0.25em] text-gold">AI Legal Practice Suite</div>
           </div>
         </Link>
         <nav className="hidden items-center gap-8 md:flex">
@@ -157,8 +157,8 @@ function Workflow() {
           <div>
             <h2 className="font-display text-4xl font-bold md:text-5xl">A workflow your firm will <span className="text-gradient-gold">actually love</span></h2>
             <p className="mt-4 text-muted-foreground">
-              Stop juggling spreadsheets, email threads, and outdated case software. Lex Counsel unifies your practice
-              into a single, secure source of truth.
+              Stop juggling spreadsheets, email threads, and outdated case software. law.aflix.co.in unifies your
+              practice into a single, secure, GST-compliant source of truth.
             </p>
             <ul className="mt-8 space-y-4">
               {[
@@ -210,39 +210,45 @@ function Workflow() {
 
 function Pricing() {
   const plans = [
-    { name: "Solo", price: "$29", desc: "For independent practitioners", features: ["Up to 50 cases", "Basic reporting", "Email support"] },
-    { name: "Firm", price: "$99", desc: "For growing practices", features: ["Unlimited cases", "5 team members", "Advanced analytics", "Priority support"], featured: true },
-    { name: "Enterprise", price: "Custom", desc: "For established firms", features: ["Unlimited everything", "SSO & SAML", "Dedicated CSM", "Custom integrations"] },
+    { name: "Starter", base: 14999, gst: 17699, desc: "Solo & 2–5 lawyer practices", features: ["Up to 5 users", "CNR & cause-list tracker", "GST invoicing", "WhatsApp alerts", "Email support"] },
+    { name: "Professional", base: 29999, gst: 35399, desc: "Growing 5–10 lawyer firms", features: ["Up to 10 users", "AI OCR order parser", "E-signature workflow", "Billable hour analytics", "Priority support"], featured: true },
+    { name: "Business", base: 59999, gst: 70799, desc: "Mid-size 10–25 lawyer firms", features: ["Up to 25 users", "Trust / escrow ledger", "Litigation risk AI", "Multi-party workspace", "Dedicated onboarding"] },
+    { name: "Enterprise", base: 149999, gst: 176999, desc: "25–100+ lawyer chambers", features: ["Unlimited users", "All 50 modules", "SSO & SAML", "Asset discovery AI", "24×7 named CSM"] },
   ];
+  const inr = (n: number) => "₹" + n.toLocaleString("en-IN");
   return (
     <section id="pricing" className="mx-auto max-w-7xl px-6 py-24">
       <div className="mx-auto max-w-2xl text-center">
-        <h2 className="font-display text-4xl font-bold md:text-5xl">Pricing that scales with you</h2>
-        <p className="mt-4 text-muted-foreground">Start free for 14 days. No credit card required.</p>
+        <h2 className="font-display text-4xl font-bold md:text-5xl">Pricing built for Indian firms</h2>
+        <p className="mt-4 text-muted-foreground">Annual plans · 18% GST shown inclusive · invoices auto-generated.</p>
       </div>
-      <div className="mt-14 grid gap-6 md:grid-cols-3">
+      <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         {plans.map((p) => (
-          <div key={p.name} className={`relative rounded-3xl p-8 ${p.featured ? "gradient-navy text-white shadow-glow" : "glass"}`}>
+          <div key={p.name} className={`relative rounded-3xl p-7 ${p.featured ? "gradient-navy text-white shadow-glow" : "glass"}`}>
             {p.featured && <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full gradient-gold px-3 py-1 text-xs font-semibold text-gold-foreground">Most popular</div>}
             <div className="font-display text-xl font-semibold">{p.name}</div>
-            <div className={`mt-1 text-sm ${p.featured ? "text-white/70" : "text-muted-foreground"}`}>{p.desc}</div>
+            <div className={`mt-1 text-xs ${p.featured ? "text-white/70" : "text-muted-foreground"}`}>{p.desc}</div>
             <div className="mt-6 flex items-baseline gap-1">
-              <span className="font-display text-5xl font-bold">{p.price}</span>
-              {p.price !== "Custom" && <span className={p.featured ? "text-white/60" : "text-muted-foreground"}>/mo</span>}
+              <span className="font-display text-3xl font-bold">{inr(p.base)}</span>
+              <span className={`text-xs ${p.featured ? "text-white/60" : "text-muted-foreground"}`}>/yr + GST</span>
             </div>
-            <ul className="mt-6 space-y-3 text-sm">
+            <div className={`mt-1 text-xs ${p.featured ? "text-gold" : "text-gold"}`}>{inr(p.gst)} incl. 18% GST</div>
+            <ul className="mt-5 space-y-2.5 text-sm">
               {p.features.map((f) => (
-                <li key={f} className="flex items-center gap-2">
-                  <CheckCircle2 className={`h-4 w-4 ${p.featured ? "text-gold" : "text-success"}`} /> {f}
+                <li key={f} className="flex items-start gap-2">
+                  <CheckCircle2 className={`mt-0.5 h-4 w-4 shrink-0 ${p.featured ? "text-gold" : "text-success"}`} /> <span>{f}</span>
                 </li>
               ))}
             </ul>
-            <Link to="/auth/signup" className="mt-8 block">
-              <Button variant={p.featured ? "gold" : "outline"} className="w-full">Get started</Button>
+            <Link to="/auth/signup" className="mt-7 block">
+              <Button variant={p.featured ? "gold" : "outline"} className="w-full">Start free trial</Button>
             </Link>
           </div>
         ))}
       </div>
+      <p className="mt-8 text-center text-xs text-muted-foreground">
+        Need a 100+ lawyer / enterprise quote? <a href="mailto:sales@aflix.co.in" className="text-gold hover:underline">sales@aflix.co.in</a>
+      </p>
     </section>
   );
 }
@@ -255,7 +261,7 @@ function CTA() {
         <div className="relative">
           <Star className="mx-auto mb-4 h-8 w-8 text-gold" />
           <h2 className="font-display text-4xl font-bold md:text-5xl">Ready to elevate your practice?</h2>
-          <p className="mx-auto mt-4 max-w-xl text-white/70">Join hundreds of firms running a calmer, more profitable practice with Lex Counsel.</p>
+          <p className="mx-auto mt-4 max-w-xl text-white/70">Join Indian firms running a calmer, GST-compliant, AI-powered practice with law.aflix.co.in.</p>
           <Link to="/auth/signup" className="mt-8 inline-block">
             <Button variant="hero" size="lg" className="h-12 px-8">Start your free trial</Button>
           </Link>
@@ -271,8 +277,8 @@ function Footer() {
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 md:flex-row">
         <div className="flex items-center gap-2">
           <Scale className="h-4 w-4 text-gold" />
-          <span className="font-display text-sm font-semibold">Lex Counsel</span>
-          <span className="text-xs text-muted-foreground">© {new Date().getFullYear()}</span>
+          <span className="font-display text-sm font-semibold">law.aflix.co.in</span>
+          <span className="text-xs text-muted-foreground">© {new Date().getFullYear()} Aflix Legal Technologies</span>
         </div>
         <div className="flex gap-6 text-xs text-muted-foreground">
           <a href="#">Privacy</a><a href="#">Terms</a><a href="#">Security</a><a href="#">Contact</a>
