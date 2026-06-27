@@ -35,8 +35,6 @@ function Billing() {
   const setStatus = (id: string, status: Invoice["status"]) =>
     store.set((s) => ({ invoices: s.invoices.map((i) => (i.id === id ? { ...i, status } : i)) }));
 
-  return (
-    <div>
   // Demo derived ledger figures
   const retainerEscrow = 4218500;
   const unbilledExpenses = 184750;
