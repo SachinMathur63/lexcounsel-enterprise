@@ -1,13 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Plus, Download, Eye, Trash2, DollarSign, CheckCircle, Clock, AlertTriangle } from "lucide-react";
+import { Plus, Download, Eye, Trash2, IndianRupee, CheckCircle, Clock, AlertTriangle, Wallet, Receipt as ReceiptIcon } from "lucide-react";
 import { store, useStore, uid, type Invoice } from "@/lib/store";
 import { Button } from "@/components/ui/button";
 import { PageHeader, Modal, Field, inputCls } from "@/components/page-header";
 import { toast } from "sonner";
+import { Area, AreaChart, Bar, BarChart, CartesianGrid, Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 export const Route = createFileRoute("/app/billing")({
-  head: () => ({ meta: [{ title: "Billing — Lex Counsel" }] }),
+  head: () => ({ meta: [{ title: "Fee Ledger — Vajra Legal Chambers" }] }),
   component: Billing,
 });
 
@@ -34,16 +35,100 @@ function Billing() {
   const setStatus = (id: string, status: Invoice["status"]) =>
     store.set((s) => ({ invoices: s.invoices.map((i) => (i.id === id ? { ...i, status } : i)) }));
 
+  // Demo derived ledger figures
+  const retainerEscrow = 4218500;
+  const unbilledExpenses = 184750;
+  const monthly = [
+    { m: "Jan", recv: 820000, pend: 240000 },
+    { m: "Feb", recv: 910000, pend: 280000 },
+    { m: "Mar", recv: 1180000, pend: 320000 },
+    { m: "Apr", recv: 1340000, pend: 410000 },
+    { m: "May", recv: 1520000, pend: 380000 },
+    { m: "Jun", recv: 1690000, pend: 450000 },
+  ];
+  const split = [
+    { name: "Received", value: paid, color: "oklch(0.7 0.16 150)" },
+    { name: "Pending", value: pending, color: "oklch(0.78 0.14 78)" },
+    { name: "Overdue", value: overdue, color: "oklch(0.62 0.22 27)" },
+    { name: "Retainer Escrow", value: retainerEscrow, color: "oklch(0.6 0.15 240)" },
+  ];
+  const fmt = (n: number) => `₹${n.toLocaleString("en-IN")}`;
+
   return (
     <div>
-      <PageHeader title="Billing & Invoices" subtitle="Generate, track, and download invoices"
+      <PageHeader title="Client Fee Ledger" subtitle="Real-time tracking of received, pending, retainer escrow & unbilled expenses"
         action={<Button variant="gold" onClick={() => setOpen(true)}><Plus className="h-4 w-4" /> New invoice</Button>} />
 
-      <div className="mb-6 grid gap-4 md:grid-cols-4">
-        <Stat label="Total billed" value={`$${total.toLocaleString()}`} icon={DollarSign} color="text-info" />
-        <Stat label="Paid" value={`$${paid.toLocaleString()}`} icon={CheckCircle} color="text-success" />
-        <Stat label="Pending" value={`$${pending.toLocaleString()}`} icon={Clock} color="text-gold" />
-        <Stat label="Overdue" value={`$${overdue.toLocaleString()}`} icon={AlertTriangle} color="text-destructive" />
+      <div className="mb-6 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+        <Stat label="Fees Received" value={fmt(paid)} icon={CheckCircle} color="text-success" />
+        <Stat label="Fees Pending" value={fmt(pending + overdue)} icon={Clock} color="text-gold" />
+        <Stat label="Retainer Escrow" value={fmt(retainerEscrow)} icon={Wallet} color="text-info" />
+        <Stat label="Unbilled Expenses" value={fmt(unbilledExpenses)} icon={ReceiptIcon} color="text-warning" />
+        <Stat label="Total Billed" value={fmt(total)} icon={IndianRupee} color="text-foreground" />
+      </div>
+
+      <div className="mb-6 grid gap-6 lg:grid-cols-3">
+        <div className="rounded-2xl border border-border bg-card p-6 lg:col-span-2">
+          <div className="mb-4 flex items-center justify-between">
+            <div>
+              <h2 className="font-display text-xl font-bold">Fee Inflow Curve</h2>
+              <p className="text-xs text-muted-foreground">Last 6 months · Received vs Pending</p>
+            </div>
+          </div>
+          <div className="h-64">
+            <ResponsiveContainer>
+              <AreaChart data={monthly}>
+                <defs>
+                  <linearGradient id="gRecv" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="oklch(0.78 0.14 78)" stopOpacity={0.55} />
+                    <stop offset="100%" stopColor="oklch(0.78 0.14 78)" stopOpacity={0} />
+                  </linearGradient>
+                  <linearGradient id="gPend" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="oklch(0.6 0.15 240)" stopOpacity={0.45} />
+                    <stop offset="100%" stopColor="oklch(0.6 0.15 240)" stopOpacity={0} />
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" stroke="oklch(1 0 0 / 0.06)" />
+                <XAxis dataKey="m" stroke="currentColor" fontSize={12} tickLine={false} axisLine={false} />
+                <YAxis stroke="currentColor" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(v) => `₹${(v / 100000).toFixed(0)}L`} />
+                <Tooltip contentStyle={{ background: "var(--popover)", border: "1px solid var(--border)", borderRadius: 12 }} formatter={(v: number) => fmt(v)} />
+                <Area type="monotone" dataKey="recv" name="Received" stroke="oklch(0.78 0.14 78)" strokeWidth={2.5} fill="url(#gRecv)" />
+                <Area type="monotone" dataKey="pend" name="Pending" stroke="oklch(0.6 0.15 240)" strokeWidth={2.5} fill="url(#gPend)" />
+              </AreaChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+        <div className="rounded-2xl border border-border bg-card p-6">
+          <h2 className="mb-4 font-display text-xl font-bold">Ledger Composition</h2>
+          <div className="h-64">
+            <ResponsiveContainer>
+              <PieChart>
+                <Pie data={split} cx="50%" cy="50%" innerRadius={48} outerRadius={86} paddingAngle={3} dataKey="value">
+                  {split.map((e, i) => <Cell key={i} fill={e.color} />)}
+                </Pie>
+                <Tooltip contentStyle={{ background: "var(--popover)", border: "1px solid var(--border)", borderRadius: 12 }} formatter={(v: number) => fmt(v)} />
+                <Legend wrapperStyle={{ fontSize: 11 }} />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+      </div>
+
+      <div className="mb-6 rounded-2xl border border-border bg-card p-6">
+        <h2 className="mb-4 font-display text-xl font-bold">Monthly Realisation vs Outstanding</h2>
+        <div className="h-56">
+          <ResponsiveContainer>
+            <BarChart data={monthly}>
+              <CartesianGrid strokeDasharray="3 3" stroke="oklch(1 0 0 / 0.06)" />
+              <XAxis dataKey="m" stroke="currentColor" fontSize={12} tickLine={false} axisLine={false} />
+              <YAxis stroke="currentColor" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(v) => `₹${(v / 100000).toFixed(0)}L`} />
+              <Tooltip contentStyle={{ background: "var(--popover)", border: "1px solid var(--border)", borderRadius: 12 }} formatter={(v: number) => fmt(v)} />
+              <Legend wrapperStyle={{ fontSize: 11 }} />
+              <Bar dataKey="recv" name="Received" fill="oklch(0.78 0.14 78)" radius={[6, 6, 0, 0]} />
+              <Bar dataKey="pend" name="Pending" fill="oklch(0.6 0.15 240)" radius={[6, 6, 0, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
       </div>
 
       <div className="overflow-x-auto rounded-2xl border border-border bg-card">
@@ -92,8 +177,8 @@ function Billing() {
           <div className="rounded-xl border border-border p-6">
             <div className="flex items-start justify-between">
               <div>
-                <div className="font-display text-2xl font-bold text-gradient-gold">Lex Counsel</div>
-                <div className="text-xs text-muted-foreground">123 Legal Plaza · New York, NY</div>
+                <div className="font-display text-2xl font-bold text-gradient-gold">Vajra Legal Chambers</div>
+                <div className="text-xs text-muted-foreground">Supreme Court of India · New Delhi</div>
               </div>
               <div className="text-right">
                 <div className="font-mono text-sm font-semibold">{view.number}</div>
