@@ -5,6 +5,7 @@ import {
   Languages, Timer, FileSignature, Lock, Network, UserSearch, BarChart3, ShieldAlert, GitBranch,
   Stamp, BookOpen, WifiOff, FileUp, Bot, EyeOff, Swords, Banknote, Globe2, Briefcase, Crown,
   Newspaper, Skull, Building2, Plane, Boxes, Mic, ScrollText, Bell, Video, FileBadge,
+  Search, TrendingUp, FileCheck, MapPin, MonitorPlay, FolderLock, Hourglass, HeartHandshake, Landmark, Radar,
 } from "lucide-react";
 
 export const Route = createFileRoute("/app/features")({
@@ -55,6 +56,16 @@ const FEATURES: Feature[] = [
   { n: 38, title: "M&A Due Diligence Pipeline", desc: "Parses contracts; flags CoC & indemnities.", icon: Building2, demo: () => "327 contracts parsed · 41 change-of-control · 12 uncapped indemnities flagged." },
   { n: 39, title: "Travel & Logistics Tracker", desc: "PNR, flights, hotels for outstation matters.", icon: Plane, demo: () => "Tomorrow: 6E-237 DEL→BOM 06:10 · Hotel: Taj Lands End · Court: BHC Court 21 @ 11:00." },
   { n: 40, title: "Web3 Smart-Contract Audit Log", desc: "IP, tokenomics, NFT title parameters.", icon: Boxes, demo: () => "Contract 0xA1…b9F audited · 2 medium findings (re-entrancy guard, owner-only mint)." },
+  { n: 41, title: "AI Precedent & Citation Finder", desc: "Scans landmark SC/HC judgments for matching ratios.", icon: Search, demo: () => "Top match: (2019) 8 SCC 1 · ratio 91% · 4 supporting cites identified." },
+  { n: 42, title: "Litigation Outcome Predictor", desc: "Win probability from historically similar cases.", icon: TrendingUp, demo: () => "Predicted win probability: 73% · key driver: documentary evidence strength." },
+  { n: 43, title: "Supreme Court SLP Feasibility Analyzer", desc: "Checks if HC order qualifies for SLP grounds.", icon: FileCheck, demo: () => "SLP feasibility: STRONG · grounds: substantial Q of law u/Art 136 · 2 prior SLPs cited." },
+  { n: 44, title: "Inter-State Jurisdiction Scanner", desc: "Flags HC jurisdictional conflicts across states.", icon: MapPin, demo: () => "Cause of action: MH + DL · proper forum: BHC · DHC objection likely u/s 20 CPC." },
+  { n: 45, title: "Courtroom Exhibit Digital Presenter", desc: "Cast exhibits to court monitors securely.", icon: MonitorPlay, demo: () => "Casting Exhibit P-12 to Court 4 display · latency 38ms · watermark active." },
+  { n: 46, title: "Joint Defence Workspace", desc: "Shared encrypted folders for co-counsels.", icon: FolderLock, demo: () => "Workspace 'State v. 7 accused' · 4 co-counsels · 312 files · privilege log active." },
+  { n: 47, title: "Limitation Period Reverse Clock", desc: "Visual countdown for filing deadlines.", icon: Hourglass, demo: () => "Appeal u/s 96 CPC · 23 days, 4 hours remaining · auto-alert at T-7 days." },
+  { n: 48, title: "Pro-Bono & CSR Tracker", desc: "Logs free legal-aid hours for compliance.", icon: HeartHandshake, demo: () => "FY26 pro-bono: 184 hrs across 12 matters · meets BCI 50-hr norm ✓." },
+  { n: 49, title: "IBC Resolution Timeline Matrix", desc: "NCLT corporate insolvency stage tracker.", icon: Landmark, demo: () => "CIRP Day 142/180 · CoC vote pending · RA submissions: 3 · liquidation risk: medium." },
+  { n: 50, title: "IPR Infringement Radar", desc: "Scans patent, trademark, copyright DBs.", icon: Radar, demo: () => "3 trademark hits (Class 9) · 1 copyright takedown ready · 0 patent conflicts." },
 ];
 
 function FeaturesPage() {
@@ -65,7 +76,7 @@ function FeaturesPage() {
     <div className="space-y-6">
       <div>
         <h1 className="font-display text-3xl font-bold">Capabilities</h1>
-        <p className="text-muted-foreground">All 40 super-advanced modules of Vajra Legal Chambers. Click any tile to run it.</p>
+        <p className="text-muted-foreground">All 50 super-advanced modules of Vajra Legal Chambers. Click any tile to run it.</p>
       </div>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {FEATURES.map((f) => (
