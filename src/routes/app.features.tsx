@@ -66,7 +66,6 @@ const FEATURES: Feature[] = [
   { n: 48, title: "Pro-Bono & CSR Tracker", desc: "Logs free legal-aid hours for compliance.", icon: HeartHandshake, demo: () => "FY26 pro-bono: 184 hrs across 12 matters · meets BCI 50-hr norm ✓." },
   { n: 49, title: "IBC Resolution Timeline Matrix", desc: "NCLT corporate insolvency stage tracker.", icon: Landmark, demo: () => "CIRP Day 142/180 · CoC vote pending · RA submissions: 3 · liquidation risk: medium." },
   { n: 50, title: "IPR Infringement Radar", desc: "Scans patent, trademark, copyright DBs.", icon: Radar, demo: () => "3 trademark hits (Class 9) · 1 copyright takedown ready · 0 patent conflicts." },
-  { n: 50, title: "IPR Infringement Radar", desc: "Scans patent, trademark, copyright DBs.", icon: Radar, demo: () => "3 trademark hits (Class 9) · 1 copyright takedown ready · 0 patent conflicts." },
   { n: 51, title: "Assign Client to Assistant", desc: "Lawyer assigns clients to assistants; lawyer remains primary owner.", icon: UserCog, demo: () => "Client 'Acme Corp' assigned to Assistant Priya R. · Lawyer Adv. Mehra retained as primary · 3 tasks delegated." },
 ];
 
