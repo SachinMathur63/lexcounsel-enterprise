@@ -1,13 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Plus, Download, Eye, Trash2, DollarSign, CheckCircle, Clock, AlertTriangle } from "lucide-react";
+import { Plus, Download, Eye, Trash2, IndianRupee, CheckCircle, Clock, AlertTriangle, Wallet, Receipt as ReceiptIcon } from "lucide-react";
 import { store, useStore, uid, type Invoice } from "@/lib/store";
 import { Button } from "@/components/ui/button";
 import { PageHeader, Modal, Field, inputCls } from "@/components/page-header";
 import { toast } from "sonner";
+import { Area, AreaChart, Bar, BarChart, CartesianGrid, Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 export const Route = createFileRoute("/app/billing")({
-  head: () => ({ meta: [{ title: "Billing — Lex Counsel" }] }),
+  head: () => ({ meta: [{ title: "Fee Ledger — Vajra Legal Chambers" }] }),
   component: Billing,
 });
 
