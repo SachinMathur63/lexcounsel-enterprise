@@ -41,8 +41,8 @@ export type State = {
 const seed = (): State => ({
   user: null,
   isAdmin: false,
-  firmName: "law.aflix.co.in",
-  theme: "dark",
+  firmName: "AFLIX LEGAL SOLUTIONS PVT. LTD.",
+  theme: "light",
   clients: [
     { id: "c1", name: "Acme Corporation", email: "legal@acme.com", phone: "+1 555 0101", company: "Acme Corp", createdAt: "2025-01-10" },
     { id: "c2", name: "Jane Whitfield", email: "jane@whitfield.co", phone: "+1 555 0177", createdAt: "2025-02-22" },

@@ -6,9 +6,9 @@ import { store } from "@/lib/store";
 import { toast } from "sonner";
 import { RoyalLogo } from "@/components/royal-logo";
 
-const ADMIN_USERNAME = "vajra_legal_chambers";
-const ADMIN_PASSWORD = "VajraLegalChambers@2026";
-const FIRM_NAME = "Vajra Legal Chambers";
+const ADMIN_USERNAME = "aflix_legal_solutions";
+const ADMIN_PASSWORD = "AflixLegalSolutions@2026";
+const FIRM_NAME = "AFLIX LEGAL SOLUTIONS PVT. LTD.";
 
 export const Route = createFileRoute("/admin/login")({
   head: () => ({ meta: [{ title: `Admin Login — ${FIRM_NAME}` }] }),
@@ -25,7 +25,7 @@ function AdminLogin() {
     e.preventDefault();
     if (username.trim().toLowerCase() === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
       store.set(() => ({
-        user: { id: "admin", name: "Vajra Administrator", email: "admin@vajralegal.in", role: "lawyer" },
+        user: { id: "admin", name: "Aflix Supreme Admin", email: "admin@aflix.co.in", role: "lawyer" },
         isAdmin: true,
         firmName: FIRM_NAME,
       }));
@@ -48,8 +48,8 @@ function AdminLogin() {
             <RoyalLogo size={56} />
           </div>
           <div className="mt-3 text-center">
-            <div className="font-display text-xl font-bold text-white">{FIRM_NAME}</div>
-            <div className="text-[10px] uppercase tracking-[0.3em] text-gold">Royal Counsel Suite</div>
+            <div className="font-display text-lg font-bold text-white">👑 {FIRM_NAME} ⚖️</div>
+            <div className="text-[10px] uppercase tracking-[0.3em] text-gold">Restricted Supreme Admin</div>
           </div>
         </div>
         <div className="rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl">
@@ -58,7 +58,7 @@ function AdminLogin() {
           <form onSubmit={submit} className="mt-6 space-y-4">
             <div>
               <label className="mb-1.5 block text-xs font-medium uppercase tracking-wider text-white/70">Username</label>
-              <input value={username} onChange={(e) => setUsername(e.target.value)} placeholder="vajra_legal_chambers"
+              <input value={username} onChange={(e) => setUsername(e.target.value)} placeholder="aflix_legal_solutions"
                 className="h-11 w-full rounded-lg border border-white/15 bg-white/5 px-3.5 text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-gold" />
             </div>
             <div>
@@ -73,8 +73,8 @@ function AdminLogin() {
           </form>
           <div className="mt-6 rounded-lg border border-gold/20 bg-gold/10 p-3 text-xs text-white/70">
             <div className="font-medium text-gold">Master credentials</div>
-            Username: <span className="font-mono">vajra_legal_chambers</span><br/>
-            Password: <span className="font-mono">VajraLegalChambers@2026</span>
+            Username: <span className="font-mono">aflix_legal_solutions</span><br/>
+            Password: <span className="font-mono">AflixLegalSolutions@2026</span>
           </div>
         </div>
         <Link to="/" className="mt-6 block text-center text-sm text-white/60 hover:text-white">← Back to website</Link>

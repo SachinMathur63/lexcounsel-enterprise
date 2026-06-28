@@ -12,26 +12,26 @@ export function AuthShell({
         <Link to="/" className="flex items-center gap-3">
           <RoyalLogo size={40} />
           <div className="leading-tight">
-            <div className="font-display text-xl font-bold">Vajra Legal Chambers</div>
-            <div className="text-[10px] uppercase tracking-[0.3em] text-gold">Royal Counsel Suite</div>
+            <div className="font-display text-lg font-bold">AFLIX LEGAL SOLUTIONS</div>
+            <div className="text-[10px] uppercase tracking-[0.3em] text-gold">Pvt. Ltd. · LPMS</div>
           </div>
         </Link>
         <div className="relative">
           <div className="pointer-events-none absolute -inset-20 bg-gradient-to-br from-gold/20 to-transparent blur-3xl" />
           <blockquote className="relative">
             <p className="font-display text-3xl leading-snug">
-              "Vajra is the apex operating system of Indian legal practice — every CNR, every cause list, every order, one console."
+              "Aflix is the apex operating system of Indian legal practice — every CNR, every cause list, every order, one console."
             </p>
             <footer className="mt-4 text-sm text-white/70">— Senior Advocate, Supreme Court of India</footer>
           </blockquote>
         </div>
-        <div className="text-xs text-white/50">© {new Date().getFullYear()} Vajra Legal Chambers. Bank-grade security.</div>
+        <div className="text-xs text-white/50">© {new Date().getFullYear()} AFLIX LEGAL SOLUTIONS PVT. LTD. Bank-grade security.</div>
       </div>
       <div className="flex items-center justify-center bg-background px-6 py-12">
         <div className="w-full max-w-md">
           <Link to="/" className="mb-8 flex items-center gap-2 lg:hidden">
             <RoyalLogo size={32} />
-            <span className="font-display text-lg font-bold">Vajra Legal Chambers</span>
+            <span className="font-display text-base font-bold">AFLIX LEGAL SOLUTIONS</span>
           </Link>
           <h1 className="font-display text-3xl font-bold">{title}</h1>
           <p className="mt-2 text-sm text-muted-foreground">{subtitle}</p>
