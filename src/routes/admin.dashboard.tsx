@@ -9,7 +9,7 @@ export const Route = createFileRoute("/admin/dashboard")({
     if (typeof window === "undefined") return;
     if (!store.get().isAdmin) throw redirect({ to: "/admin/login" });
   },
-  head: () => ({ meta: [{ title: "Supreme Admin — Vajra Legal Chambers" }] }),
+  head: () => ({ meta: [{ title: "Restricted Supreme Admin — AFLIX LEGAL SOLUTIONS PVT. LTD." }] }),
   component: AdminDash,
 });
 
@@ -38,8 +38,8 @@ function AdminDash() {
           <Link to="/admin/dashboard" className="flex items-center gap-2.5">
             <div className="grid h-10 w-10 place-items-center rounded-lg gradient-gold shadow-glow"><Shield className="h-5 w-5 text-gold-foreground" /></div>
             <div>
-              <div className="font-display text-lg font-bold tracking-wide">VAJRA LEGAL CHAMBERS</div>
-              <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-gold">Restricted Supreme Admin</div>
+              <div className="font-display text-base font-bold tracking-wide">👑 AFLIX LEGAL SOLUTIONS PVT. LTD. ⚖️</div>
+              <div className="text-[10px] font-semibold uppercase tracking-[0.25em] text-gold">Restricted Supreme Admin</div>
             </div>
           </Link>
           <Button variant="outline" onClick={logout}><LogOut className="h-4 w-4" /> Sign out</Button>

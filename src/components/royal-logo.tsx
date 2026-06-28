@@ -1,4 +1,4 @@
-// Vajra Legal Chambers — Royal Emblem (Crown + Scales of Justice)
+// AFLIX LEGAL SOLUTIONS PVT. LTD. — Royal Emblem (Crown + Scales of Justice)
 export function RoyalLogo({ size = 28, className = "" }: { size?: number; className?: string }) {
   return (
     <svg
@@ -8,7 +8,7 @@ export function RoyalLogo({ size = 28, className = "" }: { size?: number; classN
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
-      aria-label="Vajra Legal Chambers"
+      aria-label="AFLIX LEGAL SOLUTIONS PVT. LTD."
     >
       <defs>
         <linearGradient id="vlc-gold" x1="0" y1="0" x2="0" y2="1">
